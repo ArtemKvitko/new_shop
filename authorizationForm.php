@@ -9,6 +9,17 @@ if(!isset($_SESSION['user'])) {
 <input name="login" type="submit" value="LogIn" id="logins"> or <a href="index.php?page=regUser"> Sing Up </a>
 </form> ';
 
+
+if ($_POST['login']) {
+    $check=Db::userExist($_POST['email']);
+
+        if ($check) {
+
+            echo 'YoooHoo';
+        } else {echo 'Problem';}
+}
+
+
 } else {
     if (!isset($bucket)){
         $bkimg='empty.png';
