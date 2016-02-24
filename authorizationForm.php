@@ -3,11 +3,11 @@
 
 if(!isset($_SESSION['user'])) {
     echo '
-<form method="post" id="nouser" action="index.php">
+<div id="nouser"><form method="post" action="index.php">
 <label>e - mail: &nbsp;  </label> <input name="email" type="text" ><br>
 <label>Password</label> <input name="password" type="password" ><br>
 <input name="login" type="submit" value="LogIn" id="login"> or <a href="index.php?page=regUser"> Sing Up </a>
-</form> ';
+</form> </div>' ;
 
 
 if (isset($_POST['login'])) {

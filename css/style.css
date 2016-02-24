@@ -1,19 +1,67 @@
 #register{
 
-position: absolute;
+
 	
-	
-	padding: 18px 6% 60px 6%;
-	margin: 0 0 35px 0;
-	background: rgb(247, 247, 247);
-	border: 1px solid rgba(147, 184, 189,0.8);
-	}
+padding: 18px 6% 20px 6%;
+margin: 0 0 35px 0;
+background: rgb(247, 247, 247);
+border: 1px solid rgba(147, 184, 189,0.8);
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
 	
 	
 #err{
-	color: red;
+color: red;
+}
+
+#bucket{
+float: right;
+margin: 1px;
+
+}
+
+#reguser{
+	float: left;
 }
 
 
+#top{
+    background: url(../img/top.jpg) no-repeat center;
+    height: 181px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+}
+#main{
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    border-width: 1px;
+    border-style: solid;
+}
 
 
+#logo{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1px;
+}
+#logotip{
+    height: 45px;
+}
+
+#nouser{
+
+
+position: relative;
+    top: 100px;
+
+}
+
+#clr{
+    clear: both;
+}

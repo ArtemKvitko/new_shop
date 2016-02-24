@@ -14,21 +14,37 @@ function __autoload($class){
 
 
 
-
+echo '<div id="main"><div id="top">
+<div id="logo"><a href="index.php"><img src="img/logo.png" id="logotip" ></a> </div>
+';
 require_once 'authorizationForm.php';
+echo '</div>';
 
+echo '   <div id="navigation"> ';
+
+        $db = new Db();
+
+
+
+ echo '   </div> ';
 
 if (isset($_GET['page'])) {
-    if ($_GET['page']=='regUser'){
 
-       require_once('registrationForm.php');
+    switch ($_GET['page']) {
+        case 'regUser':
+            require_once('registrationForm.php');
+            break;
+        case 'logOut':
+            session_destroy();
+            header('Refresh: 0; url=index.php');
+            break;
+        case 2:
+            echo "i равно 2";
+            break;
     }
 
-    if ($_GET['page']=='logOut'){
-        session_destroy();
-        header('Refresh: 0; url=index.php');
 
-    }
+
 }
 
 
@@ -37,7 +53,7 @@ if (isset($_GET['page'])) {
 
 ?>
 
-
+</div>
 
 
 
