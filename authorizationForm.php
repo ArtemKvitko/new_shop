@@ -3,20 +3,35 @@
 
 if(!isset($_SESSION['user'])) {
     echo '
-<form method="post" id="nouser">
+<form method="post" id="nouser" action="index.php">
 <label>e - mail: &nbsp;  </label> <input name="email" type="text" ><br>
 <label>Password</label> <input name="password" type="password" ><br>
-<input name="login" type="submit" value="LogIn" id="logins"> or <a href="index.php?page=regUser"> Sing Up </a>
+<input name="login" type="submit" value="LogIn" id="login"> or <a href="index.php?page=regUser"> Sing Up </a>
 </form> ';
 
 
-if ($_POST['login']) {
+if (isset($_POST['login'])) {
     $check=Db::userExist($_POST['email']);
 
         if ($check) {
 
+            $pass=md5($_POST['password']);
+
+          if ($pass==$check->password){
             echo 'YoooHoo';
-        } else {echo 'Problem';}
+              var_dump($check);
+            $_SESSION['user']= new User($check->id,$check->email,$check->name,$check->sname,$check->phone,$check->adress);
+              header('Refresh: 0; url=index.php');
+          } else {
+
+           echo '<b id="err"> Your e-mail or password is incorrect </b>';
+
+          }
+
+
+
+        } else {
+            echo '<b id="err">User not found</b>';}
 }
 
 

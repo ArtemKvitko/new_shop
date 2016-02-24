@@ -16,11 +16,23 @@ function __autoload($class){
 
 
 require_once 'authorizationForm.php';
-var_dump($_GET);
 
-if ($_GET['page']='regUser') {
-    require_once('registrationForm.php');
+
+if (isset($_GET['page'])) {
+    if ($_GET['page']=='regUser'){
+
+       require_once('registrationForm.php');
+    }
+
+    if ($_GET['page']=='logOut'){
+        session_destroy();
+        header('Refresh: 0; url=index.php');
+
+    }
 }
+
+
+
 
 
 ?>

@@ -10,7 +10,9 @@ position: absolute;
 	}
 	
 	
-
+#err{
+	color: red;
+}
 
 
 
