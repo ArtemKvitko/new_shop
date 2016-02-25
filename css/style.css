@@ -133,7 +133,7 @@ h3{
 #showName{
     font-size: 20px;
     background-color: aquamarine;
-    width: 79%;
+    width: 78%;
     float: right;
     height: 35px;
     margin-right: 3px;
@@ -159,4 +159,16 @@ h3{
 
 #justLeft{
     float: left;
+}
+
+#bucketItems{
+    border-style: dashed;
+    border-width: 1px;
+    border-color: brown;
+    min-height: 150px;
+    float: left;
+    width: 78%;
+    margin-left: 8px;
+    margin-top: 0;
+
 }
