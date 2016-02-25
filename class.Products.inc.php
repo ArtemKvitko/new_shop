@@ -56,14 +56,18 @@
               }
         }
 
-        public  function showProduct($id){
+        public  function showProduct($id,$pr=true){
             $db = Db::getInstance()->getConnection() ;
             $stmt=$db->prepare("SELECT * FROM products WHERE id='".(int)$id."'");
             $stmt->execute();
-            $item = (object)$stmt->fetch();
-            if ($item){
+            $item = $stmt->fetch();
 
-                //$pieces = explode(",", $item->specyfication);
+            if ($item){
+                $item=(object)$item;
+                if ($pr){
+
+
+
 
                 echo "
 
@@ -108,9 +112,19 @@
                 }
                 echo " </div><div id='detail'>";
                 echo $item->detail.'</div> <div id="clr"></div>';
+                } else {
+                    return $item;
+                }
+            } else {
+
+                // if not found product with id
+                echo '<h1 id="err"> Product with that id not found </h1>';
+
             }
 
         }
+
+
 
 
 
