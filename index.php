@@ -54,6 +54,10 @@ if (isset($_GET['page'])) {
         case 'product':
             require_once('productForm.php');
             break;
+
+        case 'bucket':
+            require_once('bucketForm.php');
+            break;
     }
 
 

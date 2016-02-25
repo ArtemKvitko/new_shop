@@ -36,7 +36,10 @@ if (isset($_POST['login'])) {
 
 
 } else {
-    if (!isset($bucket)){
+
+    $_SESSION['bucket']=$_SESSION['user']->getBucket();
+
+    if (empty( $_SESSION['bucket'])){
         $bkimg='empty.png';
     } else {
         $bkimg='full.png';

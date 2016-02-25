@@ -41,6 +41,27 @@ class User {
     return $ret;
     }
 
+
+    public function getBucket(){
+
+        $db = Db::getInstance()->getConnection() ;
+        $stmt=$db->prepare("SELECT * FROM bucket
+                             WHERE user_id=".$this->id);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $result=[];
+        if (!empty($res) ){
+        foreach($res as $ob){
+            array_push($result,$ob);
+                   }
+            return (object)$result;
+        } else {
+            return null;
+        }
+
+
+    }
+
 }
 
 
