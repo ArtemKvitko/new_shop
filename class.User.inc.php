@@ -13,7 +13,33 @@ class User {
         $this->adress=$p_adress;
     }
 
+    public function purchase($prod_id,$count){
 
+        $db = Db::getInstance()->getConnection() ;
+        $stmt=$db->prepare("SELECT * FROM products
+                            WHERE id=".$prod_id." LIMIT 1");
+        $stmt->execute();
+        $res = (object)$stmt->fetch();
+      //  echo var_dump($res);exit;
+        $available_count = $res->available_count;
+
+        if ($count <= $available_count){
+            $left=$available_count-$count;
+            $stmt=  $db->prepare("UPDATE `products` SET `available_count` = '$left' WHERE `products`.`id` = ".$prod_id);
+            $stmt->execute();
+
+            $stmt=  $db->prepare("INSERT INTO `bucket` (`user_id`, `product_id`, `purchase_count`)
+            VALUES (".$this->id." , ".$prod_id." , ".$count.") ");
+
+            $stmt->execute();
+
+
+            $ret = 'purchased';
+        } else {
+            $ret = 'too many';
+        }
+    return $ret;
+    }
 
 }
 

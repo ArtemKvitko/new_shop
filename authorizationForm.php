@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
 
           if ($pass==$check->password){
             echo 'YoooHoo';
-              var_dump($check);
+
             $_SESSION['user']= new User($check->id,$check->email,$check->name,$check->sname,$check->phone,$check->adress);
               header('Refresh: 0; url=index.php');
           } else {

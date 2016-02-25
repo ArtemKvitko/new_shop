@@ -98,7 +98,7 @@
                 Purchase count: <input type=number name='count' required value='1' min='1' max='".$item->available_count."' ></input>
                         <button name='buy' id='buyButton'> Add to bucket </button> </form>";
                       } else {
-                         // <div id='buy'></div>
+                         echo  " Sorry, this model is not available at this moment. <br><div id='available'> <button id='buyButton' disabled> Add to bucket </button> ";
                       }
 
 
