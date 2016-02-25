@@ -24,6 +24,13 @@ echo '   <div id="navigation"> ';
 
         $db = new Db();
 
+$product = new Products();
+$b= $product->getCategories();
+
+
+foreach($b as $category){
+    echo '<p><a href="index.php?page=products&category='.$category->id.'">'.$category->name.'</a>';
+}
 
 
  echo '   </div> ';
@@ -38,22 +45,29 @@ if (isset($_GET['page'])) {
             session_destroy();
             header('Refresh: 0; url=index.php');
             break;
-        case 2:
-            echo "i равно 2";
+        case 'products':
+            if (isset($_GET['category'])){
+                $prod = $product->getProducts($_GET['category']);
+                $product->printProducts($prod);
+            }
+            break;
+        case 'product':
+            require_once('productForm.php');
             break;
     }
-
 
 
 }
 
 
 
-
-
 ?>
 
+
+
+
 </div>
+
 
 
 

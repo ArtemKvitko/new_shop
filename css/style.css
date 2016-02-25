@@ -35,12 +35,15 @@ margin: 1px;
     width: 800px;
 }
 #main{
+    min-height: 100%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     width: 800px;
     border-width: 1px;
     border-style: solid;
+    margin-top: 1px;
+    padding-top: 0px;
 }
 
 
@@ -64,4 +67,96 @@ position: relative;
 
 #clr{
     clear: both;
+}
+
+body{
+    margin: 0px;
+}
+
+#navigation{
+    min-height: 70%;
+    height: auto;
+    border-width: 1px;
+    border-style: solid;
+    float: left;
+    width: 20%;
+}
+
+#products{
+    width: 80%;
+
+}
+
+#product{
+    margin: 1px;
+    padding: 1px;
+    width: 23%;
+    float: left;
+    margin: 1%;
+    height: 30%;
+    border-width: 1px;
+    border-style: solid;
+}
+h2{
+    float: left;
+    padding: 1px;
+    margin: 1px;
+}
+
+h3{
+    float: left;
+    padding: 1px;
+    margin: 5px;
+    font-size: 18px;
+}
+
+#imgitem{
+     clear: both;
+     margin-left: auto;
+     margin-right: auto;
+     max-width: 130px ;
+     padding: 1px;
+     max-height: 120px;
+ }
+
+.cen{
+
+}
+
+#imgBig{
+    max-width: 350px ;
+    max-height: 450px;
+
+    float: left;
+
+}
+#showName{
+    font-size: 20px;
+    background-color: aquamarine;
+    width: 79%;
+    float: right;
+    height: 35px;
+    margin-right: 3px;
+}
+
+#specyfication{
+    float: left;
+    max-width: 270px;
+    margin: 5px;
+    min-width: 250px;
+}
+
+#speclogo{
+    width: 24px;
+    height:24px;
+}
+
+#detail{
+    max-width: 75%;
+    float: left;
+    margin: 10px;
+}
+
+#justLeft{
+    float: left;
 }
