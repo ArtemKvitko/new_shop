@@ -170,5 +170,8 @@ h3{
     width: 78%;
     margin-left: 8px;
     margin-top: 0;
-
+}
+#price{
+    color: brown;
+    float: left;
 }

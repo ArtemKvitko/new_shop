@@ -62,6 +62,29 @@ class User {
 
     }
 
+    public function returnAll($ret_id){
+        $db = Db::getInstance()->getConnection();
+        $stmt=$db->prepare("SELECT * FROM bucket
+                             WHERE id=".$ret_id." LIMIT 1");
+        $stmt->execute();
+        $temp_res=$stmt->fetch();
+        $count=$temp_res['purchase_count'];
+        $product_id=$temp_res['product_id'];
+            if (isset($count)and isset($product_id)) {
+        $db = Db::getInstance()->getConnection();
+        $stmt=$db->prepare("UPDATE products SET available_count=available_count+".$count."
+                             WHERE id=".$product_id);
+        $stmt->execute();
+        if ($stmt->rowCount()>0) {
+        $stmt=$db->prepare("DELETE FROM bucket
+                             WHERE id=".$ret_id);
+        $stmt->execute();
+        return $stmt->rowCount(); } else return 0;
+    } else return 0;
+
+
+    }
+
 }
 
 

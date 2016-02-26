@@ -4,7 +4,13 @@
 if (isset($_POST['retProd'])){
 
     $rres=$_SESSION['user']->returnAll($_POST['retProd']);
-
+        if($rres>0) {
+            echo '<script> alert(" You succesfuly canceled your order!")</script>';
+            header('Refresh: 0; url=index.php?page=bucket');
+        } else {
+            echo '<script> alert(" Something is wrong! Please relogin")</script>';
+            header('Refresh: 0; url=index.php?page=logOut');
+        }
 }
 
 
@@ -35,7 +41,7 @@ if (!empty( $_SESSION['bucket'])) {
                 }
 
                 echo '</h4></div>You`ve purchased <b id="err">'.$itm['purchase_count'].'</b> items <br>';
-                echo '<button type="submit" id="button" name="retProd" value="'.$itm['product_id'].'"> Return all </button>';
+                echo '<button type="submit" id="button" name="retProd" value="'.$itm['id'].'"> Return all </button>';
 
                  echo   "</div>";
 
@@ -43,7 +49,7 @@ if (!empty( $_SESSION['bucket'])) {
 
 
 } else {
-    echo '<h1>Nothing is added to cart yet </h1>';
+    echo '<center><h1> Nothing is added to cart yet </h1></center>';
 }
 ?>
 </form>

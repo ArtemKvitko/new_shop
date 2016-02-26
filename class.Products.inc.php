@@ -44,7 +44,10 @@
                      <h2> ".$item->brand."  </h2> <h3> ".$item->name." </h3></a> <br>
                      <div id='imgitem'><img src='img/".$item->pic."' id='imgitem' ></div>
 
-                       <div id='specyfication'> <h4>".$item->specyfication."</h4></div>
+                       <div id='specyfication'> <h4 id='price'> Price:".$item->price." $</h4>
+                       <h4><br> Items left:".$item->available_count."</h4>
+                       </div>
+
 
 
                      </div>
@@ -88,6 +91,7 @@
                         $result[$k]['value']= 'Not available';
                     }else{
                         $result[$k]['img'] = 'img/icon/'.$k.".png";
+                        if ($result[$k]['value']=='True') { $result[$k]['value']='Yes';}
                     }
 
                    echo '<p><img src="'. $result[$k]['img'].'" id="speclogo"> '.$k.' : '.$result[$k]['value'] ;
