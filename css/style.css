@@ -1,13 +1,13 @@
+
 #register{
 
-
-	
-padding: 18px 6% 20px 6%;
-margin: 0 0 35px 0;
+margin: 0 1 3px 0;
 background: rgb(247, 247, 247);
 border: 1px solid rgba(147, 184, 189,0.8);
-    width: 600px;
+    width: 95%;
+    padding: 0 8px 0 10  ;
     margin-left: auto;
+
     margin-right: auto;
 }
 	
@@ -22,30 +22,43 @@ margin: 1px;
 
 }
 
+#wide{
+    width: 200px;
+}
+
 #reguser{
 	float: left;
 }
 
 
 #top{
-    background: url(../img/top.jpg) no-repeat center;
+    background: url(../img/top.jpg) no-repeat right;
     height: 181px;
     margin-left: auto;
     margin-right: auto;
     width: 800px;
 }
 #main{
-    min-height: 100%;
+    margin:0 auto;
+    width: 800px;
+
+    margin-top: 1px;
+    padding-top: 0px;
+
+}
+
+
+#Block{
+    min-height: 70%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     width: 800px;
-    border-width: 1px;
-    border-style: solid;
+
     margin-top: 1px;
     padding-top: 0px;
+    background: #f13f3a;
 }
-
 
 #logo{
     width: 30%;
@@ -53,6 +66,15 @@ margin: 1px;
     margin-right: auto;
     height: 1px;
 }
+#regField{
+     width: 30%;
+     margin-left: auto;
+     margin-right: auto;
+
+ }
+
+
+
 #logotip{
     height: 45px;
 }
@@ -61,7 +83,11 @@ margin: 1px;
 
 
 position: relative;
-    top: 100px;
+    top: 80px;
+
+
+    margin-left: 10px;
+
 
 }
 
@@ -71,13 +97,14 @@ position: relative;
 
 body{
     margin: 0px;
+
 }
 
 #navigation{
-    min-height: 70%;
-    height: auto;
-    border-width: 1px;
-    border-style: solid;
+
+    background: #f13f3a;
+
+
     float: left;
     width: 20%;
 }
@@ -88,14 +115,16 @@ body{
 }
 
 #product{
-    margin: 1px;
     padding: 1px;
-    width: 23%;
+    width: 30%;
     float: left;
-    margin: 1%;
-    height: 30%;
+    margin-top: 10px;
+    margin-left: 15px;
+    height: auto;
+    height: 180px;
     border-width: 1px;
     border-style: solid;
+    background-color: white;
 }
 h2{
     float: left;
@@ -124,18 +153,25 @@ h3{
 }
 
 #imgBig{
-    max-width: 350px ;
+    max-width: 350px;
     max-height: 450px;
 
+    width: 350px;
+    max-height: 350px;
+
+    border-color: brown ;
+    border-width: 3px;
+    border-style: dashed;
     float: left;
+    margin: 5px;
 
 }
 #showName{
     font-size: 20px;
     background-color: aquamarine;
-    width: 78%;
+    width: 99%;
     float: right;
-    height: 35px;
+    height: 38px;
     margin-right: 3px;
 }
 
@@ -159,6 +195,12 @@ h3{
 
 #justLeft{
     float: left;
+    margin: 0px;
+}
+
+#justRight{
+    float: right;
+    margin: 0px;
 }
 
 #bucketItems{
@@ -174,4 +216,61 @@ h3{
 #price{
     color: brown;
     float: left;
+    margin: 0px;
+}
+
+#pageBlock{
+    width: 79%;
+    min-height: 70%;
+    float: right;
+    border-color: brown;
+    border-width: 1px;
+    border-style: solid;
+    background: #ffdad8;
+}
+
+
+
+#button {
+
+
+    padding: 0 0 1em 0;
+    margin-bottom: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Grande',
+    Verdana, Lucida, Geneva, Helvetica,
+    Arial, sans-serif;
+    background-color: #f13f3a;
+    color: #333;
+}
+
+#button ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#button li {
+    border-bottom: 1px solid #90bade;
+    margin: 0;
+}
+
+#button li a {
+    display: block;
+    padding: 5px 5px 5px 0.5em;
+    border-left: 10px solid #b70814;
+    ;
+    background-color: #f13f3a;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+}
+html>body #button li a {
+      width: auto;
+  }
+#button li a:hover {
+    border-left: 10px solid #b70814;
+    border-right: 10px solid #ee2b29;
+    background-color: #d9372c;
+    color: #000;
 }

@@ -18,9 +18,8 @@ if (isset($_POST['login'])) {
             $pass=md5($_POST['password']);
 
           if ($pass==$check->password){
-            echo 'YoooHoo';
 
-            $_SESSION['user']= new User($check->id,$check->email,$check->name,$check->sname,$check->phone,$check->adress);
+            $_SESSION['user']= new User($check->id,$check->email,$check->uname,$check->sname,$check->phone,$check->adress);
               header('Refresh: 0; url=index.php');
           } else {
 

@@ -14,26 +14,45 @@ function __autoload($class){
 
 
 
-echo '<div id="main"><div id="top">
-<div id="logo"><a href="index.php"><img src="img/logo.png" id="logotip" ></a> </div>
+echo '<div id="main">
+<div id="top">
+    <div id="logo">
+        <a href="index.php"><img src="img/logo.png" id="logotip" ></a>
+    </div>
 ';
+
 require_once 'authorizationForm.php';
 echo '</div>';
 
+
+
+echo '<div id="Block">';
+
 echo '   <div id="navigation"> ';
 
-        $db = new Db();
+$db = new Db();
 
 $product = new Products();
 $b= $product->getCategories();
-
+echo'<div id="button">
+<ul>';
 
 foreach($b as $category){
-    echo '<p><a href="index.php?page=products&category='.$category->id.'">'.$category->name.'</a>';
+    echo '<li><a href="index.php?page=products&category='.$category->id.'">'.$category->name.'</a></li>';
 }
 
+echo '</ul>
+</div>';
 
- echo '   </div> ';
+
+
+
+echo '   </div> ';
+
+echo "<div id='pageBlock'>";
+
+
+
 
 if (isset($_GET['page'])) {
 
@@ -62,7 +81,8 @@ if (isset($_GET['page'])) {
 
 
 }
-
+echo '</div>';
+echo '<div id="clr"></div></div>';
 
 
 ?>

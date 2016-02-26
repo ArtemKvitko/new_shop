@@ -3,8 +3,6 @@
 
         public function getCategories(){
 
-//            $db = new Db();
-//            $db->getInstance()->getConnection();
 
             $db = Db::getInstance()->getConnection() ;
             $stmt=$db->prepare("SELECT * FROM category");
@@ -41,22 +39,19 @@
 
                     <div id='product'>
                      <a href='index.php?page=product&productId=".$item->id."'>
-                     <h2> ".$item->brand."  </h2> <h3> ".$item->name." </h3></a> <br>
-                     <div id='imgitem'><img src='img/".$item->pic."' id='imgitem' ></div>
+                     <h2> ".$item->brand."  </h2> <h3> ".$item->name." </h3> <br>
+                     <div id='imgitem'><img src='img/".$item->pic."' id='imgitem' ></a></div>
 
-                       <div id='specyfication'> <h4 id='price'> Price:".$item->price." $</h4>
-                       <h4><br> Items left:".$item->available_count."</h4>
-                       </div>
-
-
+                       <h4 id='price'> Price:".$item->price." \$</h4>
+                       <h4 id='justRight'> left:".$item->available_count."</h4>
 
                      </div>
 
                     ";
 
 
-                }
-              }
+                } echo "<div id='clr'> </div>" ;
+            }
         }
 
         public  function showProduct($id,$pr=true){

@@ -32,10 +32,10 @@ class Db {
 
         $res ->execute();
         $result=$res->fetch();
-        //echo '<pre>'.var_dump($result).'</pre><p></p>';
+
         if ($result) {
             $result=(object)$result;
-          //  echo '<pre>'.var_dump($result).'</pre>';
+
         }
         return $result;
 
