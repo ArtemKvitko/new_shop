@@ -51,7 +51,7 @@ echo '   </div> ';
 
 echo "<div id='pageBlock'>";
 
-
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 
 if (isset($_GET['page'])) {
@@ -65,8 +65,30 @@ if (isset($_GET['page'])) {
             header('Refresh: 0; url=index.php');
             break;
         case 'products':
+
+
+            echo '<div id="order"> Order by:
+        <a href="index.php?page=products&category='.$_GET["category"].'&orderBy=brand"> BRAND </a>
+        or
+        <a href="index.php?page=products&category='.$_GET["category"].'&orderBy=price"> PRICE </a>
+
+
+
+ </div>';
+
+
+
+
             if (isset($_GET['category'])){
-                $prod = $product->getProducts($_GET['category']);
+
+
+
+                if (isset($_GET['orderBy'])) {
+                    $prod = $product->getProducts($_GET['category'],$_GET['orderBy']);
+                } else {
+                    $prod = $product->getProducts($_GET['category']);
+                }
+
                 $product->printProducts($prod);
             }
             break;

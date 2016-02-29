@@ -15,9 +15,22 @@
 
         return $result;
         }
-        public function getProducts($cat){
+        public function getProducts($cat,$orderby='ORDER BY id'){
             $db = Db::getInstance()->getConnection() ;
-            $stmt=$db->prepare("SELECT * FROM products WHERE category='".(int)$cat."'");
+
+            switch ($orderby) {
+                case 'ORDER BY id':
+                    break;
+                case 'brand':
+                    $orderby='ORDER BY brand';
+                    break;
+                case 'price':
+                    $orderby='ORDER BY price';
+                    break;
+
+            }
+
+            $stmt=$db->prepare("SELECT * FROM products WHERE category='".(int)$cat."' ".$orderby." ");
             $stmt->execute();
             $allproducts = $stmt->fetchAll();
 

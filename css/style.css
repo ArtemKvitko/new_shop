@@ -172,7 +172,7 @@ h3{
 }
 #showName{
     font-size: 20px;
-    background-color: aquamarine;
+    background-color: #d9372c;
     width: 99%;
     float: right;
     height: 38px;
@@ -277,4 +277,8 @@ html>body #button li a {
     border-right: 10px solid #ee2b29;
     background-color: #d9372c;
     color: #000;
+}
+
+#order{
+    margin: 10px;
 }
