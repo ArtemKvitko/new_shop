@@ -77,9 +77,16 @@ if (isset($_GET['page'])) {
         case 'bucket':
             require_once('bucketForm.php');
             break;
+        case 'userInfo':
+            if (isset($_SESSION['user'])){
+                $_SESSION['user']->userInfo();
+            }
+            break;
     }
 
 
+} else {
+    echo '<<== Please select one of categories';
 }
 echo '</div>';
 echo '<div id="clr"></div></div>';

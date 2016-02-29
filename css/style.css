@@ -14,6 +14,11 @@ border: 1px solid rgba(147, 184, 189,0.8);
 	
 #err{
 color: red;
+
+    position: relative;
+    margin-top: -25px;
+
+
 }
 
 #bucket{
@@ -136,7 +141,7 @@ h3{
     float: left;
     padding: 1px;
     margin: 5px;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 #imgitem{
@@ -153,11 +158,10 @@ h3{
 }
 
 #imgBig{
-    max-width: 350px;
-    max-height: 450px;
+
+
 
     width: 350px;
-    max-height: 350px;
 
     border-color: brown ;
     border-width: 3px;
@@ -188,7 +192,7 @@ h3{
 }
 
 #detail{
-    max-width: 75%;
+    max-width: 95%;
     float: left;
     margin: 10px;
 }
@@ -209,7 +213,7 @@ h3{
     border-color: brown;
     min-height: 150px;
     float: left;
-    width: 78%;
+    width: 98%;
     margin-left: 8px;
     margin-top: 0;
 }

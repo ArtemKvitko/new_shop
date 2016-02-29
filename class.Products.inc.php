@@ -35,6 +35,7 @@
                 echo '<h1>Sorry, no products in this category </h1>';
             } else {
                 foreach ($products as $item){
+
                     echo "
 
                     <div id='product'>
@@ -69,7 +70,7 @@
 
                 echo "
 
-                     <div id='showName'> <img src='img/icon/".$item->brand.".png' height='24px' id='justLeft'>
+                     <div id='showName'> <img src='img/icon/".$item->brand.".png' height='32px' id='justLeft'>
 
                      <h2> ".$item->brand." - </h2> <h2> ".$item->name." </h2> </div><br>
                      <div id='cen'><img src='img/".$item->pic."' id='imgBig' ></div>
@@ -122,7 +123,6 @@
             }
 
         }
-
 
 
 

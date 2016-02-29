@@ -85,6 +85,28 @@ class User {
 
     }
 
+
+    public function userInfo() {
+        if (isset($_SESSION['user'])){
+
+            echo " <h2>User information</h2><br><br>
+
+            <div id='register'>
+
+            <b> e-mail: </b> $this->email;  <br>
+            <b> name: </b> $this->name; <br>
+            <b> surname: </b> $this->sname; <br>
+            <b> phone number : </b> $this->phone; <br>
+            <b> delivery adress:</b> $this->adress; <br>
+
+            </div>
+            ";
+
+        } else {
+            echo '<h1 id="err"> Please logIn </h1>';
+        }
+    }
+
 }
 
 

@@ -23,14 +23,14 @@ if (isset($_POST['login'])) {
               header('Refresh: 0; url=index.php');
           } else {
 
-           echo '<b id="err"> Your e-mail or password is incorrect </b>';
+           echo '<br><br><br><br><b id="err"> Your e-mail or password is incorrect </b>';
 
           }
 
 
 
         } else {
-            echo '<b id="err">User not found</b>';}
+            echo '<br><br><br><br><b id="err">User not found</b>';}
 }
 
 

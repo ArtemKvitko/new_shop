@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['signup'])){
-echo var_dump($_POST);
+
     $check=Db::userExist($_POST['email']);
 
     if ($check){
@@ -13,7 +13,7 @@ echo var_dump($_POST);
       $stmt=$db->prepare("INSERT INTO `users` (`email`, `password`, `uname`, `sname`, `phone`, `adress`) VALUES ('".$mail."' , '".$pass."' , ".$_POST['usern']." , ".$_POST['sname']." , ".$_POST['phone']." , ".$_POST['adress']." )");
       $stmt->execute();
     if ($stmt->rowCount()==1){
-        echo '<script> alert(" You succesfuly registered. \n Enter your email and password ")</script>';
+        echo '<script> alert(" You succesfuly registered.  Enter your email and password ")</script>';
         header('Refresh: 0; url=index.php');
     }
 
