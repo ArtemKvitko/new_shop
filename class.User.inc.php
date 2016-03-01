@@ -12,22 +12,26 @@ class User {
         $this->phone=$p_phone;
         $this->adress=$p_adress;
     }
-
+//Purchasing selected product.
+//Input product id and purchasing count
     public function purchase($prod_id,$count){
 
+        //getting available count of products
         $db = Db::getInstance()->getConnection() ;
         $stmt=$db->prepare("SELECT * FROM products
                             WHERE id=".$prod_id." LIMIT 1");
         $stmt->execute();
         $res = (object)$stmt->fetch();
-      //  echo var_dump($res);exit;
+
         $available_count = $res->available_count;
 
+      //  checking is there enough products available to purchase
         if ($count <= $available_count){
             $left=$available_count-$count;
+            // subtracting from available count, the purchase count
             $stmt=  $db->prepare("UPDATE `products` SET `available_count` = '$left' WHERE `products`.`id` = ".$prod_id);
             $stmt->execute();
-
+            //adding to bucket purchase count of product
             $stmt=  $db->prepare("INSERT INTO `bucket` (`user_id`, `product_id`, `purchase_count`)
             VALUES (".$this->id." , ".$prod_id." , ".$count.") ");
 
@@ -41,7 +45,7 @@ class User {
     return $ret;
     }
 
-
+//getting info about products purchased by user
     public function getBucket(){
 
         $db = Db::getInstance()->getConnection() ;
@@ -61,20 +65,26 @@ class User {
 
 
     }
-
+//returning products that are in bucket
     public function returnAll($ret_id){
+
+        //checking in DB is there product to return
+        (int)$ret_id;
         $db = Db::getInstance()->getConnection();
         $stmt=$db->prepare("SELECT * FROM bucket
                              WHERE id=".$ret_id." LIMIT 1");
         $stmt->execute();
         $temp_res=$stmt->fetch();
-        $count=$temp_res['purchase_count'];
-        $product_id=$temp_res['product_id'];
+        $count=(int)$temp_res['purchase_count'];
+        $product_id=(int)$temp_res['product_id'];
+
+        //returning non buyed products and increasind available count
             if (isset($count)and isset($product_id)) {
         $db = Db::getInstance()->getConnection();
         $stmt=$db->prepare("UPDATE products SET available_count=available_count+".$count."
                              WHERE id=".$product_id);
         $stmt->execute();
+  //if operation succesful deleting purchase from a  bucket
         if ($stmt->rowCount()>0) {
         $stmt=$db->prepare("DELETE FROM bucket
                              WHERE id=".$ret_id);
@@ -85,7 +95,7 @@ class User {
 
     }
 
-
+//display user info
     public function userInfo() {
         if (isset($_SESSION['user'])){
 

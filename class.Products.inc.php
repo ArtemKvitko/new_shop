@@ -1,8 +1,8 @@
 <?php
     class Products {
 
+        //getting info about available categories in DB
         public function getCategories(){
-
 
             $db = Db::getInstance()->getConnection() ;
             $stmt=$db->prepare("SELECT * FROM category");
@@ -15,6 +15,9 @@
 
         return $result;
         }
+
+        //getting all products from choosen category
+        //and choose sort type
         public function getProducts($cat,$orderby='ORDER BY id'){
             $db = Db::getInstance()->getConnection() ;
 
@@ -27,6 +30,8 @@
                 case 'price':
                     $orderby='ORDER BY price';
                     break;
+                default:
+                    $orderby='ORDER BY id';
 
             }
 
@@ -42,6 +47,8 @@
                return $result;
         }
 
+        //printing short info about products
+        //input object
         public function printProducts($products){
 
             if (!$products){
@@ -68,6 +75,8 @@
             }
         }
 
+        //displaying full info about selected product
+        //input product id, and parametr for printing ($pr=true, or just getting info $pr=false)
         public  function showProduct($id,$pr=true){
             $db = Db::getInstance()->getConnection() ;
             $stmt=$db->prepare("SELECT * FROM products WHERE id='".(int)$id."'");
@@ -77,9 +86,6 @@
             if ($item){
                 $item=(object)$item;
                 if ($pr){
-
-
-
 
                 echo "
 
@@ -91,24 +97,11 @@
                       <div id='specyfication'> <h4>";
 
 
-                $res = json_decode($item->specyfication);
-
-                foreach($res as $k=>$v){
-                    $result[$k]['value'] = $v;
-                    if(empty($v)){
-                        $result[$k]['img'] = "img/icon/empty.png";
-                        $result[$k]['value']= 'Not available';
-                    }else{
-                        $result[$k]['img'] = 'img/icon/'.$k.".png";
-                        if ($result[$k]['value']=='True') { $result[$k]['value']='Yes';}
-                    }
-
-                   echo '<p><img src="'. $result[$k]['img'].'" id="speclogo"> '.$k.' : '.$result[$k]['value'] ;
-                }
+                    $this->printSpec($item->specyfication);
 
 
+                    echo   "</h4></div>";
 
-                 echo   "</h4></div>";
                 if (isset($_SESSION['user'])){
                       if ($item->available_count>0 ){
                         echo "  <div id='available'><form action='' name='buyForm' method='post'>
@@ -117,8 +110,6 @@
                       } else {
                          echo  " Sorry, this model is not available at this moment. <br><div id='available'> <button id='buyButton' disabled> Add to bucket </button> ";
                       }
-
-
 
                 } else {
                     echo '<div><h2 id="err"> Please log in </h2> ';
@@ -137,7 +128,26 @@
 
         }
 
+            public function printSpec($inp){
 
+                //decoding products specyfication from json
+                $res = json_decode($inp);
+
+                foreach($res as $k=>$v){
+                    $result[$k]['value'] = $v;
+                    if($v===false){
+                        $result[$k]['img'] = "img/icon/empty.png";
+                        $result[$k]['value']= 'Not available';
+                    }else{
+                        $result[$k]['img'] = 'img/icon/'.$k.".png";
+                        if ($result[$k]['value']===True) { $result[$k]['value']='Yes';}
+                    }
+
+                    if (!file_exists($result[$k]['img'])) {$result[$k]['img'] = 'img/icon/absent.png';}
+                    echo '<img src="'. $result[$k]['img'].'" id="speclogo"> '.$k.' : '.$result[$k]['value'].'<br>';
+                }
+
+            }
 
 
     }
