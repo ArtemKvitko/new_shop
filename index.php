@@ -1,17 +1,17 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/style.css">
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
 </head>
 <body>
 
 <?php
 session_start();
 
-function __autoload($class){
-    require_once 'class.'.$class.'.inc.php';
+function __autoload($class)
+{
+    require_once 'class.' . $class . '.inc.php';
 }
-
 
 
 echo '<div id="main">
@@ -25,7 +25,6 @@ require_once 'authorizationForm.php';
 echo '</div>';
 
 
-
 echo '<div id="Block">';
 
 echo '   <div id="navigation"> ';
@@ -33,18 +32,16 @@ echo '   <div id="navigation"> ';
 $db = new Db();
 
 $product = new Products();
-$b= $product->getCategories();
-echo'<div id="button">
+$b = $product->getCategories();
+echo '<div id="button">
 <ul>';
 
-foreach($b as $category){
-    echo '<li><a href="index.php?page=products&category='.$category->id.'">'.$category->name.'</a></li>';
+foreach ($b as $category) {
+    echo '<li><a href="index.php?page=products&category=' . $category->id . '">' . $category->name . '</a></li>';
 }
 
 echo '</ul>
 </div>';
-
-
 
 
 echo '   </div> ';
@@ -68,26 +65,24 @@ if (isset($_GET['page'])) {
 
 
             echo '<div id="order"> Order by:
-        <a href="index.php?page=products&category='.$_GET["category"].'&orderBy=brand"> BRAND </a>
+        <a href="index.php?page=products&category=' . $_GET["category"] . '&orderBy=brand"> BRAND </a>
         or
-        <a href="index.php?page=products&category='.$_GET["category"].'&orderBy=price"> PRICE </a>
+        <a href="index.php?page=products&category=' . $_GET["category"] . '&orderBy=price"> PRICE </a>
 
 
 
  </div>';
 
 
+            if (isset($_GET['category'])) {
 
 
-            if (isset($_GET['category'])){
-
-
-
-                if (isset($_GET['orderBy'])) {
-                    $prod = $product->getProducts($_GET['category'],$_GET['orderBy']);
-                } else {
-                    $prod = $product->getProducts($_GET['category']);
-                }
+             //   if (isset($_GET['orderBy'])) {
+                    $prod = $product->getProducts($_GET['category'], (isset($_GET['orderBy']))? $_GET['orderBy']:null);
+              //  }
+               // else {
+                //    $prod = $product->getProducts($_GET['category']);
+             //   }
 
                 $product->printProducts($prod);
             }
@@ -100,7 +95,7 @@ if (isset($_GET['page'])) {
             require_once('bucketForm.php');
             break;
         case 'userInfo':
-            if (isset($_SESSION['user'])){
+            if (isset($_SESSION['user'])) {
                 $_SESSION['user']->userInfo();
             }
             break;
@@ -117,11 +112,7 @@ echo '<div id="clr"></div></div>';
 ?>
 
 
-
-
 </div>
-
-
 
 
 </body>

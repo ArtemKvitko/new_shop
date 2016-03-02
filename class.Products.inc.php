@@ -105,7 +105,7 @@
                 if (isset($_SESSION['user'])){
                       if ($item->available_count>0 ){
                         echo "  <div id='available'><form action='' name='buyForm' method='post'>
-                Purchase count: <input type=number name='count' required value='1' min='1' max='".$item->available_count."' ></input>
+                Purchase count: <input type=number name='count' required value='1' min='1' max='".$item->available_count."' > </input>
                         <button name='buy' id='buyButton'> Add to bucket </button> </form>";
                       } else {
                          echo  " Sorry, this model is not available at this moment. <br><div id='available'> <button id='buyButton' disabled> Add to bucket </button> ";
