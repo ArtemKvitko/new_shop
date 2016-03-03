@@ -7,7 +7,7 @@
 
             $email = htmlspecialchars($_POST['email'], ENT_QUOTES);
             $check = Db::userExist($email);
-          //if email founded
+            //if email founded
             if ($check) {
                 $pass = md5($_POST['password']);
                 //comparing passwords
@@ -33,8 +33,19 @@
         $bkimg = empty($_SESSION['bucket']) ? 'bucket_empty.png' : 'bucket_full.png';
 
         echo "
-    <form id='reguser'>Hello, <a href='index.php?page=userInfo'>" . $_SESSION['user']->name . " " . $_SESSION['user']->sname . "</a>
-    <a href='index.php?page=logOut' ><img src='img/logout.png' height='16px' alt='log Out' ></a></form>
+
+<div class='dropdown'>
+
+<button class='dropbtn' >" . $_SESSION['user']->name . " " . $_SESSION['user']->sname . "</button>
+
+  <div class='dropdown-content'>
+    <a href='index.php?page=userInfo'>My info</a>
+    <a href = index.php?page=purchaseHistory>purchase history</a>
+    <a href = index.php?page=bucket>products in bucket</a>
+    <a href='index.php?page=logOut' >LogOut <img src='img/logout.png' height='20px' alt='log Out' id='justRight'></a>
+    </div>
+
+    </div>
     ";
         echo '<a href = index.php?page=bucket><img src = "img/' . $bkimg . '" id="bucket"></a>';
     }

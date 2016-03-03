@@ -88,15 +88,16 @@ class Products
         if ($item) {
             $item = (object)$item;
             if ($pr) {
+
+                $this->printProductName($item->brand, $item->name, $item->id);
                 echo "
-                     <div id='showName'> <img src='img/icon/" . $item->brand . ".png' height='32px' id='justLeft'>
-                     <h2> " . $item->brand . " - </h2> <h2> " . $item->name . " </h2> </div><br>
+
                      <div id='cen'><img src='img/" . $item->pic . "' id='imgBig' ></div>
                       <div id='specyfication'> <h4>";
 
                 $this->printSpec($item->specyfication);
                 echo "</h4></div>";
-
+                echo " <h4> Current price: <b  style='color: green'> " . $item->price . " \$</b></h4>";
                 if (isset($_SESSION['user'])) {
                     if ($item->available_count > 0) {
                         echo "  <div id='available'><form action='' name='buyForm' method='post'>
@@ -143,5 +144,14 @@ class Products
 
     }
 
+    public function printProductName($brand, $name, $product_id)
+    {
+        echo "  <div id='showName'> <img src='img/icon/" . $brand . ".png' height='24px' id='justLeft'>
+
+                     <h2><a href='index.php?page=product&productId=" . $product_id . "' id='astyle'> " . $brand . " - </h2><h2> " . $name . " </h2></a> </div><br>
+
+                     ";
+
+    }
 
 }

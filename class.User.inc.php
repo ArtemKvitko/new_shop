@@ -128,8 +128,9 @@ class User
     public function confirmPurchase($purchase_id)
     {
         $db = Db::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM bucket
-                             WHERE id=" . $purchase_id . " LIMIT 1");
+        $stmt = $db->prepare("SELECT bucket.*, products.price FROM bucket
+                              JOIN products ON bucket.product_id=products.id
+                              WHERE bucket.id=" . $purchase_id . " LIMIT 1");
         $stmt->execute();
         $temp_res = $stmt->fetch();
 
@@ -139,26 +140,25 @@ class User
             $product_id = $temp_res['product_id'];
             $user_id = $this->id;
             $bucketdate = $temp_res['purchase_date'];
+            $paysum = $count * $temp_res['price'];
 
             //confirming buying products
-           $stmt = $db->prepare("INSERT INTO `purchasehistory`
-                      (`user_id`, `product_id`, `count`, `bucket_date`)
-            VALUES (" . $user_id. " , " . $product_id . " , " . $count . " , '".$bucketdate."') ");
+            $stmt = $db->prepare("INSERT INTO `purchasehistory`
+                      (`user_id`, `product_id`, `count`, `bucket_date`,`pay_sum`)
+            VALUES (" . $user_id . " , " . $product_id . " , " . $count . " , '" . $bucketdate . "' , " . $paysum . ") ");
             $stmt->execute();
 
-            var_dump($stmt);
+
             //if operation succesful deleting purchase from a  bucket
             if ($stmt->rowCount() > 0) {
                 $stmt = $db->prepare("DELETE FROM bucket
                              WHERE id=" . $purchase_id);
                 $stmt->execute();
-                $msg= $stmt->rowCount() > 0 ? null : 'error ocured. Cannot confirm purchase';
+                $msg = $stmt->rowCount() > 0 ? null : 'error ocured. Cannot confirm purchase';
 
             } else {
-                $msg='Some error ocured. Cannot confirm purchase';
+                $msg = 'Some error ocured. Cannot confirm purchase';
             };
-
-
 
 
         } else {
@@ -168,6 +168,31 @@ class User
         return $msg;
     }
 
+    public function purchaseHistory()
+    {
+        $db = Db::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT purchasehistory.* , products.brand, products.name FROM purchasehistory
+                              JOIN products ON purchasehistory.product_id=products.id
+                              WHERE user_id=" . $this->id);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $result = '';
+
+        $prod = new Products();
+        foreach ($res as $itm) {
+            $prod->printProductName($itm['brand'], $itm['name'], $itm['product_id']);
+
+            $result .= "<div id='bucketItems'>";
+            $result .= "<h2>Purchase date: " . $itm['confirm_date'] . "</h2><br/>";
+            $result .= "<p><h3>You have purchased: " . $itm['count'] . " item(s)</h3></p><br/>";
+            $result .= "<h3>You have paid: <b id='err'> " . $itm['pay_sum'] . "</b></h3><br/>";
+            $result .= '</div>';
+
+            echo $result;
+            $result = '';
+        }
+
+    }
 }
 
 

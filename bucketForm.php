@@ -27,12 +27,9 @@
         $buyed = new Products();
         foreach ($_SESSION['bucket'] as $itm) {
             $item = $buyed->showProduct($itm['product_id'], false);
+            $buyed->printProductName($item->brand,$item->name, $itm['product_id']);
 
-
-            echo "<div id='showName'> <img src='img/icon/" . $item->brand . ".png' height='24px' id='justLeft'>
-
-                     <h2> " . $item->brand . " - </h2> <h2> " . $item->name . " </h2> </div><br>
-                     <div id='bucketItems'>
+            echo "   <div id='bucketItems'>
                      <div id='justLeft' ><img src='img/" . $item->pic . "' id='imgitem' ></div>
 
                       <div id='specyfication'> <h3>";

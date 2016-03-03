@@ -61,29 +61,18 @@ if (isset($_GET['page'])) {
             session_destroy();
             header('Refresh: 0; url=index.php');
             break;
+        case 'purchaseHistory':
+            isset($_SESSION['user']) ? $_SESSION['user']->purchaseHistory() : null;
+
+            break;
         case 'products':
-
-
             echo '<div id="order"> Order by:
         <a href="index.php?page=products&category=' . $_GET["category"] . '&orderBy=brand"> BRAND </a>
         or
-        <a href="index.php?page=products&category=' . $_GET["category"] . '&orderBy=price"> PRICE </a>
-
-
-
- </div>';
-
+        <a href="index.php?page=products&category=' . $_GET["category"] . '&orderBy=price"> PRICE </a>  </div>';
 
             if (isset($_GET['category'])) {
-
-
-             //   if (isset($_GET['orderBy'])) {
-                    $prod = $product->getProducts($_GET['category'], (isset($_GET['orderBy']))? $_GET['orderBy']:null);
-              //  }
-               // else {
-                //    $prod = $product->getProducts($_GET['category']);
-             //   }
-
+                $prod = $product->getProducts($_GET['category'], (isset($_GET['orderBy'])) ? $_GET['orderBy'] : null);
                 $product->printProducts($prod);
             }
             break;
