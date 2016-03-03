@@ -154,4 +154,35 @@ class Products
 
     }
 
+    public function doSearch($what)
+    {
+
+        $what = htmlspecialchars($what, ENT_QUOTES);
+        $db = Db::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT products.*, category.category_name FROM products
+                              JOIN category ON products.category=category.id
+                              WHERE name LIKE '%" . $what . "%' OR brand LIKE '%" . $what . "%'
+
+                              ORDER BY category");
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $category = '';
+
+        if (!empty($res)) {
+            foreach ($res as $item) {
+                if ($category != $item['category']) {
+                    $category = $item['category'];
+
+                    echo '<h2>' . $item['category_name'] . '</h2>';
+
+                }
+                $this->printProductName($item['brand'], $item['name'], $item['id']);
+
+            }
+        } else {
+            echo 'Sorry. No product was founded';
+        }
+
+    }
+
 }

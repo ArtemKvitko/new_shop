@@ -2,6 +2,20 @@
     <?php
     $err = '';
     $email = '';
+    $search = isset($_POST['search'])? $_POST['search']: NULL;
+
+
+
+
+
+    echo '
+    <form method="post"  id="search" action="index.php?page=search">
+    <input name="search" type="text" class="search" placeholder="enter product name" value="' . $search . '"><button name="doSearch"> Search</button>
+
+    </form>
+    ';
+
+
     if (!isset($_SESSION['user'])) {
         if (isset($_POST['login'])) {
 

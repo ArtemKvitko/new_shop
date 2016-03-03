@@ -42,6 +42,7 @@ margin-top: 63px;
     margin-left: auto;
     margin-right: auto;
     width: 800px;
+    position: relative;
 }
 #main{
     margin:0 auto;
@@ -346,4 +347,11 @@ button.orderConfirm{
 #astyle{
     color: #FFFFFF;
     text-decoration: none;
+}
+
+#search {
+    position: absolute;
+    z-index: 1;
+    right: 10%;
+    top: 10px;
 }

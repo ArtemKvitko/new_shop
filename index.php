@@ -13,7 +13,6 @@ function __autoload($class)
     require_once 'class.' . $class . '.inc.php';
 }
 
-
 echo '<div id="main">
 <div id="top">
     <div id="logo">
@@ -23,23 +22,21 @@ echo '<div id="main">
 
 require_once 'authorizationForm.php';
 echo '</div>';
-
-
 echo '<div id="Block">';
+
 
 echo '   <div id="navigation"> ';
 
 $db = new Db();
-
 $product = new Products();
 $b = $product->getCategories();
+
 echo '<div id="button">
 <ul>';
 
 foreach ($b as $category) {
-    echo '<li><a href="index.php?page=products&category=' . $category->id . '">' . $category->name . '</a></li>';
+    echo '<li><a href="index.php?page=products&category=' . $category->id . '">' . $category->category_name . '</a></li>';
 }
-
 echo '</ul>
 </div>';
 
@@ -56,6 +53,14 @@ if (isset($_GET['page'])) {
     switch ($_GET['page']) {
         case 'regUser':
             require_once('registrationForm.php');
+            break;
+        case 'search':
+            if (!empty($_POST['search'])) {
+                echo '<h1>Search results</h1>';
+                $product->doSearch($_POST['search']);
+            }
+
+
             break;
         case 'logOut':
             session_destroy();
