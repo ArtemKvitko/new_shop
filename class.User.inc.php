@@ -18,7 +18,6 @@ class User
 //Input product id and purchasing count
     public function purchase($prod_id, $count)
     {
-
         //getting available count of products
         $db = Db::getInstance()->getConnection();
         $stmt = $db->prepare("SELECT * FROM products
@@ -47,8 +46,6 @@ class User
             // subtracting from available count, the purchase count
             $stmt = $db->prepare("UPDATE `products` SET `available_count` = '$left' WHERE `products`.`id` = " . $prod_id);
             $stmt->execute();
-
-
             $ret = 'purchased';
         } else {
             $ret = 'too many';
@@ -59,12 +56,9 @@ class User
 //getting info about products purchased by user
     public function getBucket($product_id = NULL)
     {
-
         $db = Db::getInstance()->getConnection();
-
         $product_id = isset($product_id) ? 'AND product_id=' . (int)$product_id : NULL;
         $stmt = $db->prepare("SELECT * FROM bucket WHERE user_id=" . $this->id . ' ' . $product_id);
-
         $stmt->execute();
         $res = $stmt->fetchAll();
         $result = [];
@@ -76,14 +70,11 @@ class User
         } else {
             return null;
         }
-
-
     }
 
 //returning products that are in bucket
     public function returnAll($ret_id)
     {
-
         //checking in DB is there product to return
         (int)$ret_id;
         $db = Db::getInstance()->getConnection();
@@ -96,9 +87,8 @@ class User
 
         //returning non buyed products and increasind available count
         if (isset($count) and isset($product_id)) {
-//        $db = Db::getInstance()->getConnection();
             $stmt = $db->prepare("UPDATE products SET available_count=available_count+" . $count . "
-                             WHERE id=" . $product_id);
+                                  WHERE id=" . $product_id);
             $stmt->execute();
             //if operation succesful deleting purchase from a  bucket
             if ($stmt->rowCount() > 0) {
@@ -133,6 +123,49 @@ class User
         } else {
             echo '<h1 id="err"> Please logIn </h1>';
         }
+    }
+
+    public function confirmPurchase($purchase_id)
+    {
+        $db = Db::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT * FROM bucket
+                             WHERE id=" . $purchase_id . " LIMIT 1");
+        $stmt->execute();
+        $temp_res = $stmt->fetch();
+
+
+        if ($temp_res) {
+            $count = $temp_res['purchase_count'];
+            $product_id = $temp_res['product_id'];
+            $user_id = $this->id;
+            $bucketdate = $temp_res['purchase_date'];
+
+            //confirming buying products
+           $stmt = $db->prepare("INSERT INTO `purchasehistory`
+                      (`user_id`, `product_id`, `count`, `bucket_date`)
+            VALUES (" . $user_id. " , " . $product_id . " , " . $count . " , '".$bucketdate."') ");
+            $stmt->execute();
+
+            var_dump($stmt);
+            //if operation succesful deleting purchase from a  bucket
+            if ($stmt->rowCount() > 0) {
+                $stmt = $db->prepare("DELETE FROM bucket
+                             WHERE id=" . $purchase_id);
+                $stmt->execute();
+                $msg= $stmt->rowCount() > 0 ? null : 'error ocured. Cannot confirm purchase';
+
+            } else {
+                $msg='Some error ocured. Cannot confirm purchase';
+            };
+
+
+
+
+        } else {
+            $msg = 'there is no selected product in bucket to confirm';
+        }
+
+        return $msg;
     }
 
 }

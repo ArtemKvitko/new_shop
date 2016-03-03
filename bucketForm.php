@@ -11,6 +11,15 @@
             echo '<script> alert(" Something is wrong! Please relogin")</script>';
             header('Refresh: 0; url=index.php?page=logOut');
         }
+    } else if (isset($_POST['confirmOrder'])) {
+
+        $msg=$_SESSION['user']->confirmPurchase($_POST['confirmOrder']);
+    if ($msg) {
+        echo $msg;
+
+    } else {
+        echo '<script> alert(" You succesfuly confirmed your order!")</script>';
+        header('Refresh: 0; url=index.php?page=bucket');}
     }
 
 
