@@ -154,7 +154,7 @@ class User
                 $stmt = $db->prepare("DELETE FROM bucket
                              WHERE id=" . $purchase_id);
                 $stmt->execute();
-                $msg = $stmt->rowCount() > 0 ? null : 'error ocured. Cannot confirm purchase';
+                $msg = $stmt->rowCount() > 0 ? null : 'Error ocured. Cannot confirm purchase';
 
             } else {
                 $msg = 'Some error ocured. Cannot confirm purchase';
@@ -162,7 +162,7 @@ class User
 
 
         } else {
-            $msg = 'there is no selected product in bucket to confirm';
+            $msg = 'There is no selected product in bucket to confirm';
         }
 
         return $msg;

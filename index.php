@@ -97,7 +97,8 @@ if (isset($_GET['page'])) {
 
 
 } else {
-    echo '<<== Please select one of categories';
+    echo '<h1> <== Please select one of categories</h1>';
+    echo '<h1 id="blue"> Or use product search on the top ^</h1>';
 }
 echo '</div>';
 echo '<div id="clr"></div></div>';
@@ -107,6 +108,7 @@ echo '<div id="clr"></div></div>';
 
 
 </div>
+
 
 
 </body>

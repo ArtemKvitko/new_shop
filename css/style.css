@@ -17,6 +17,10 @@ color: red;
 
     position: relative;
     margin-top: -25px;
+}
+
+#blue{
+    color: blue;
 
 
 }
@@ -55,12 +59,11 @@ margin-top: 63px;
 
 
 #Block{
-    min-height: 70%;
-    height: auto;
+    min-height: 470px;
+    clear: both;
     margin-left: auto;
     margin-right: auto;
     width: 800px;
-
     margin-top: 1px;
     padding-top: 0px;
     background: #f13f3a;
@@ -99,7 +102,7 @@ position: relative;
 }
 
 #clr{
-    clear: both;
+    /*clear: both;*/
 }
 
 body{
@@ -108,12 +111,9 @@ body{
 }
 
 #navigation{
-
-    background: #f13f3a;
-
-
-    float: left;
+    display: inline-block;
     width: 20%;
+    vertical-align: top;
 }
 
 #products{
@@ -123,8 +123,9 @@ body{
 
 #product{
     padding: 1px;
-    width: 30%;
-    float: left;
+    width: 29%;
+    display: inline-block;
+    vertical-align: top;
     margin-top: 10px;
     margin-left: 15px;
     height: auto;
@@ -133,6 +134,7 @@ body{
     border-style: solid;
     background-color: white;
 }
+
 h2{
     float: left;
     padding: 1px;
@@ -230,13 +232,12 @@ h3{
 }
 
 #pageBlock{
+    min-height: 469px;
     width: 79%;
-    min-height: 70%;
-    float: right;
-    border-color: brown;
-    border-width: 1px;
-    border-style: solid;
+    display: inline-block;
+    vertical-align: top;
     background: #ffdad8;
+    border-left:solid 1px #000;
 }
 
 
